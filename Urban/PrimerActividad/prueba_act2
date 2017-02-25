@@ -1,0 +1,6 @@
+import csv as csv
+import numpy as np
+import pandas as pd
+
+archivo=csv.reader(open('vehicle.csv','r',))
+pd.read_csv(archivo,sep=',',header='infer')

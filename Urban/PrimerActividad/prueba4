@@ -1,0 +1,9 @@
+import pandas as pd
+import pandas_datareader.data as web
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+google = web.DataReader('GOOG', data_source = 'google', start = '3/14/2009', end = '4/14/2016')
+google = google.drop('Volume', axis = 1 )
+google.head()

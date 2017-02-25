@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Dec 14 10:05:43 2016
+
+@author: cesarmarquez
+"""
+
+import csv as csv
+import numpy as np
+import pandas as pd
+
+"""archivo=open('vehicle.csv','rt')"""
+archivo=codecs.open('vehicle.csv', encoding='utf-8')
+"""pd.read_csv(archivo,sep=',',header='infer')"""

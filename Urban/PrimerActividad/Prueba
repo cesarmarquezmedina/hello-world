@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Dec 14 10:25:05 2016
+
+@author: cesarmarquez
+"""
+import numpy as np
+import csv as cv
+import pandas as pd
+
+
+archivo=cv.reader(open('vehicle.csv','rt'))
+
+
+for index,row in enumerate(archivo):
+    if index==0:
+      head=np.array(row)
+      break
+
+prueba=['hola','como','e']
+#head=np.array(head)
+#head=case_converter(head).strip()
+
+"""for a in range(aux.shape[1]):
+    aux[0][a]=head[0][a]
+"""
+head2=[]
+for a in range(101):
+    head2.append('a')
+#print(aux)
+headers=str(head2)
+#print(headers)
+aux=np.genfromtxt('vehicle.csv',delimiter=',')
+"""data = np.genfromtxt(
+    fname,
+    names = True, #  If `names` is True, the field names are read from the first valid line
+    comments = '#', # Skip characters after #
+    delimiter = '\t', # tab separated values
+    dtype = None)  # guess the dtype of each column"""
+print(aux)
+

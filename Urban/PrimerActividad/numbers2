@@ -1,0 +1,21 @@
+import matplotlib.pyplot as plt
+from sklearn import datasets 
+from sklearn import svm
+
+digits= datasets.load_digits()
+
+print(digits.data)
+print(digits.target)
+print(digits.images[0])
+clf= svm.SVC(gamma=0.001,C=100)
+
+number=-1
+
+x,y=digits.data[:-1],digits.target[:number]
+
+clf.fit(x,y)
+
+print('Prediccion:',clf.predict(digits.data[number]))
+
+plt.imshow(digits.images[number],cmap=plt.cm.gray_r,interpolation="nearest")
+plt.show()

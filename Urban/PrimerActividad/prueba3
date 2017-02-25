@@ -1,0 +1,37 @@
+import pandas as pd
+import pandas_datareader.data as web #conda install -c anaconda pandas-datareader=0.2.1
+import numpy as np
+import matplotlib.pyplot as plt
+import sklearn
+from sklearn.linear_model import LinearRegression
+
+google = web.DataReader('GOOG', data_source = 'google', start = '3/14/2009', end = '4/14/2016')
+google = google.drop('Volume', axis = 1 )
+google['Ticks'] = range(0,len(google.index.values))
+
+#se toma de decima parte de lops datos 
+one_tenth = google.sample(frac = .1,random_state=np.random.randint(10))
+
+#se quita el encabezado de los indices y se reacomodan de menor a mayor
+one_tenth.index.name = None
+one_tenth = one_tenth.sort_values(by=['Ticks'], ascending=[True])
+
+print(one_tenth.head())
+
+#se reseta el index para que sea el de la fecha 
+google = google.reset_index()
+google.head(3)
+
+google['Rolling_Mean'] = google['Open'].rolling(window = 80).mean()
+print(google.head(5))
+"""
+fig = plt.figure();
+ax = fig.add_subplot(111);
+ax.plot(google['Date'], google['Rolling_Mean'], color = (0,0,0), linewidth = 4, alpha = .9, label = 'Smoothed');
+ax.plot(google['Date'], google['Open'], color = (1,0,0), label = 'Original');
+ax.set_title('Original and Smoothed Price')
+ax.set_xlabel('Ticks')
+ax.set_ylabel('Price')
+ax.legend(loc='lower right');"""
+
+filt_google = google[(google['Ticks'] >= 800) & (google['Ticks'] <= 1200)]
